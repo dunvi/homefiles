@@ -1,0 +1,59 @@
+########
+# .zshrc
+#
+########
+# PROMPT
+
+# Colors
+fg_bold_black="$(print  '%{\e[1;30m%}')"
+fg_black="$(print       '%{\e[30m%}')"
+fg_bold_red="$(print    '%{\e[1;31m%}')"
+fg_red="$(print         '%{\e[31m%}')"
+fg_bold_green="$(print  '%{\e[1;32m%}')"
+fg_green="$(print       '%{\e[32m%}')"
+fg_bold_mag="$(print    '%{\e[1;35m%}')"
+fg_mag="$(print         '%{\e[35m%}')"
+fg_bold_cyan="$(print   '%{\e[1;36m%}')"
+fg_cyan="$(print        '%{\e[36m%}')"
+fg_bold_white="$(print  '%{\e[1;37m%}')"
+fg_white="$(print       '%{\e[37m%}')"
+
+bg_bold_red="$(print    '%{\e[1;41m%}')"
+bg_bold_green="$(print  '%{\e[1;42m%}')"
+bg_green="$(print       '%{\e[42m%}')"
+bg_bold_mag="$(print    '%{\e[1;45m%}')"
+bg_bold_cyan="$(print   '%{\e[1;46m%}')"
+
+color_reset="$(print    '%{\e[0m%}')"
+
+alias parse_git_branch="git branch 2>/dev/null | grep '*' | sed -e 's/* \(.*\)/ [\1]/g'"
+
+function more_prompt() {
+    which cloud_prompt >/dev/null
+    if [[ $? ]] then
+        cloud_prompt
+    else
+        echo "${fg_green}local${color_reset}"
+    fi
+}
+
+# Prompt
+PS1="  %(!.${fg_bold_red}.${fg_bold_green})%n${color_reset}@"'$(more_prompt)'" ${fg_cyan}[%6d]${color_reset}
+(%!) %#> "
+
+# Right prompt
+precmd() {
+    CURR_GIT_BRANCH="$(parse_git_branch)"
+    export RPROMPT="${fg_cyan}${CURR_GIT_BRANCH}${fg_bold_green}(%*)${color_reset}"
+}
+
+eval "$(direnv hook zsh)"
+
+bindkey '^R' history-incremental-search-backward
+
+bindkey '^[[1;5C' emacs-forward-word
+bindkey '^[[1;5D' emacs-backward-word
+
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+

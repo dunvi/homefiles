@@ -1,0 +1,35 @@
+import = [
+    "~/.config/alacritty/theme-blood-moon.toml",
+]
+
+[window]
+dimensions = { columns = 120, lines = 54 }
+padding = { x = 5, y = 5 }
+dynamic_title = true
+option_as_alt = "Both"
+
+[scrolling]
+history = 100000
+multiplier = 2
+
+[font]
+normal = { family = "DejaVu Sans Mono", style = "Book" }
+bold = { family = "DejaVu Sans Mono", style = "Book" } # bold text is evil
+italic = { family = "DejaVu Sans Mono", style = "Oblique" }
+bold_italic = { family = "DejaVu Sans Mono", style = "Bold Oblique" }
+size = 13
+offset = { x = 0, y = 1 }
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[bell]
+duration = 0
+color = "#000000"
+command = "None"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { shape = "Block", blinking = "Never" }
