@@ -5,9 +5,6 @@
     enable = true;
     package = pkgs.git;
 
-    #userName
-    #userEmail
-
     aliases = {
       head = "log -n 1";
       graph = "log --graph --oneline --decorate --all";

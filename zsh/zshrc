@@ -29,8 +29,8 @@ color_reset="$(print    '%{\e[0m%}')"
 alias parse_git_branch="git branch 2>/dev/null | grep '*' | sed -e 's/* \(.*\)/ [\1]/g'"
 
 function more_prompt() {
-    which cloud_prompt >/dev/null
-    if [[ $? ]] then
+    which cloud_prompt 2>&1 >/dev/null
+    if [[ $? -eq 0 ]] then
         cloud_prompt
     else
         echo "${fg_green}local${color_reset}"

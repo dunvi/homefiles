@@ -33,6 +33,7 @@
   ];
 
   imports = [
+    ./identity.nix
     ./zsh/zsh.nix
     ./vim/vim.nix
     ./git.nix
