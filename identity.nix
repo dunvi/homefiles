@@ -1,11 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  home.username = "l";
-  home.homeDirectory = "/Users/l";
+  home.username = lib.mkDefault "l";
+  home.homeDirectory = lib.mkDefault "/Users/l";
 
   programs.git = {
-    userName = "dunvi";
-    userEmail = "dunvi.dunvi@gmail.com";
+    userName = lib.mkDefault "dunvi";
+    userEmail = lib.mkDefault "dunvi.dunvi@gmail.com";
   };
 }
