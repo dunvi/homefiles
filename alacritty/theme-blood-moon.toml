@@ -4,7 +4,7 @@
 [colors]
 
 [colors.primary]
-background = "0x10100E"
+background = "0x141820"
 foreground = "0xC6C6C4"
 
 [colors.normal]
