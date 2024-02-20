@@ -11,22 +11,26 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      basecfg = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.l = import ./home.nix;
-          }
-        ];
+      nixosSystem = "x86_64-linux";
+      nixosModules = [
+        ./configuration
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.l = import ./users/l;
+        }
+      ];
+
+      marthaConfig = nixpkgs.lib.nixosSystem {
+        system = nixosSystem;
+        modules = nixosModules;
       };
+
     in {
       nixosConfigurations = {
-        martha = basecfg;
-        nixos = basecfg; # Useful to keep around if reinstalling
+        martha = marthaConfig;
+        nixos = marthaConfig; # Useful to keep around if reinstalling
       };
 
       # For standalone installation
