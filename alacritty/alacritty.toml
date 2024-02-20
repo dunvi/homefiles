@@ -6,7 +6,7 @@ import = [
 dimensions = { columns = 120, lines = 54 }
 padding = { x = 5, y = 5 }
 dynamic_title = true
-option_as_alt = "Both"
+#option_as_alt = "Both" # macos only, need merge somehow
 
 [scrolling]
 history = 100000
@@ -17,7 +17,7 @@ normal = { family = "DejaVu Sans Mono", style = "Book" }
 bold = { family = "DejaVu Sans Mono", style = "Book" } # bold text is evil
 italic = { family = "DejaVu Sans Mono", style = "Oblique" }
 bold_italic = { family = "DejaVu Sans Mono", style = "Bold Oblique" }
-size = 13
+size = 11
 offset = { x = 0, y = 1 }
 
 [colors]

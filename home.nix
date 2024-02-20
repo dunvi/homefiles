@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  programs.home-manager.enable = true;
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -18,13 +20,9 @@
     pkgs.cachix
     pkgs.direnv
 
-    pkgs.colima
-    pkgs.docker
-    pkgs.docker-compose
-
-    (pkgs.google-cloud-sdk.withExtraComponents [
-        pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
-    ])
+    #pkgs.colima
+    #pkgs.docker
+    #pkgs.docker-compose
 
     (pkgs.writeShellScriptBin "cdls" ''
       cd $1
@@ -39,11 +37,10 @@
     ./git.nix
   ];
 
-  # putting here as long as we are not using the built-in alacritty support
+  # putting here as long as we are not meaningfully using the built-in alacritty support
+  programs.alacritty.enable = true;
   xdg.configFile."alacritty" = {
     source = ./alacritty;
     recursive = true;
   };
-
-  programs.home-manager.enable = true;
 }

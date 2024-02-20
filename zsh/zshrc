@@ -28,6 +28,7 @@ color_reset="$(print    '%{\e[0m%}')"
 
 alias parse_git_branch="git branch 2>/dev/null | grep '*' | sed -e 's/* \(.*\)/ [\1]/g'"
 
+# define function cloud_prompt if relevant
 function more_prompt() {
     which cloud_prompt 2>&1 >/dev/null
     if [[ $? -eq 0 ]] then
@@ -38,7 +39,7 @@ function more_prompt() {
 }
 
 # Prompt
-PS1="  %(!.${fg_bold_red}.${fg_bold_green})%n${color_reset}@"'$(more_prompt)'" ${fg_cyan}[%6d]${color_reset}
+PS1="  %(!.${fg_bold_red}.${fg_bold_green})%n${color_reset}@"$(more_prompt)" ${fg_cyan}[%6d]${color_reset}
 (%!) %#> "
 
 # Right prompt
