@@ -67,9 +67,10 @@
         diverging = false;
         worktreeAddOrphan = false;
       };
-      push.default = "nothing";
       core.hooksPath = "/dev/null";
+      init.defaultBranch = "main";
       pager.branch = false;
+      push.default = "nothing";
       url = {
         "git@github.com:".insteadOf = [ 
           "https://github.com/" 

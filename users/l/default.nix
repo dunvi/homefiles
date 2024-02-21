@@ -35,9 +35,9 @@
 
   imports = [
     ./identity.nix
-    ./zsh/zsh.nix
-    ./vim/vim.nix
     ./git.nix
+    ./zsh
+    ./vim
   ];
 
   # putting here as long as we are not meaningfully using the built-in alacritty support

@@ -6,6 +6,10 @@
     defaultEditor = true;
     packageConfigurable = pkgs.vim-full;
 
+    plugins = [
+      pkgs.vimPlugins.ale
+    ];
+
     # most of the vim config cannot be moved into this block in its current state
     # so we continue to maintain all config in vimrc for consistency.
     extraConfig = builtins.readFile ./vimrc;
