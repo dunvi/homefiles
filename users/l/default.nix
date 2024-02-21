@@ -13,8 +13,9 @@
 
     htop
 
-    cachix
-    direnv
+    #cachix
+    #direnv
+    #devenv
 
     #colima
     #docker
@@ -45,4 +46,6 @@
     source = ./alacritty;
     recursive = true;
   };
+
+  programs.direnv.enable = true;
 }

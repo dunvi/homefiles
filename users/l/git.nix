@@ -13,8 +13,10 @@
     ignores = [
       "*.swp"
 
+      ".direnv"
       "devenv.local.nix"
-      ".envrc"
+      ".devenv"
+      #".envrc"
       ".pre-commit-config.yaml"
 
       "out/"

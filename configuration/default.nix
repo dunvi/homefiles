@@ -6,6 +6,8 @@
       "nix-command"
       "flakes"
     ];
+
+    trusted-users = [ "root" "l" ];
   };
 
   imports = [
