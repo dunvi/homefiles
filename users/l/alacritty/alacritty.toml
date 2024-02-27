@@ -33,3 +33,8 @@ save_to_clipboard = true
 
 [cursor]
 style = { shape = "Block", blinking = "Never" }
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control"
+action = "Paste"
