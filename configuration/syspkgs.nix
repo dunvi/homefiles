@@ -18,4 +18,6 @@
   };
 
   services.printing.enable = true;
+
+  programs.adb.enable = true;
 }

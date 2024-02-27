@@ -4,7 +4,11 @@
   users.users.l = {
     isNormalUser = true;
     description = "l";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "adbusers"
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.zsh;
   };
 }
