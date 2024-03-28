@@ -36,5 +36,5 @@ style = { shape = "Block", blinking = "Never" }
 
 [[keyboard.bindings]]
 key = "V"
-mods = "Control"
-action = "Paste"
+mods = "Control|Shift"
+action = "ReceiveChar"

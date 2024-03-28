@@ -12,7 +12,7 @@
     xkb = {
       layout = "us";
       variant = "";
-      options = "caps:ctrl_modifer";
+      options = "ctrl:nocaps";
     };
 
     libinput = {

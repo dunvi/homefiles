@@ -31,11 +31,20 @@
       cd $1
       ls
     '')
+
+    (writeShellScriptBin "sysre" ''
+      systemctl reboot
+    '')
+
+    (writeShellScriptBin "nixre" ''
+      sudo nixos-rebuild switch --impure
+    '')
   ];
 
   imports = [
     ./identity.nix
-    ./git.nix
+    ./ssh
+    ./git
     ./zsh
     ./vim
   ];

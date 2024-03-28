@@ -22,9 +22,14 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable ssh by default.
-  programs.ssh.startAgent = true;
+  # Do not enable ssh as a server until we need to.
+  services.openssh.enable = false;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  # Client default setup
+  programs.ssh = {
+    startAgent = true;
+
+    enableAskPassword = false;
+  };
+
 }
