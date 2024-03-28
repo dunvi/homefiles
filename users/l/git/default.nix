@@ -84,48 +84,10 @@
     };
   };
 
-  home.packages = [
-    (pkgs.writeShellScriptBin "init-project" ''
-      set -euo pipefail
-
-      if [[ -z "$1" ]] ; then
-        echo "No destination given. Aborting."
-        exit 1
-      fi
-
-      case "$2" in
-      kotlin)
-        :
-        ;;
-      android|go|java|python|ruby)
-        echo "This template is not fully configured. Aborting."
-        exit 1
-        ;;
-      *)
-        echo "Invalid template language given ($2). Aborting."
-        exit 1
-        ;;
-      esac
-
-      read -p "Templating $2 to directory $1. Continue? (y/n) " -n1 answer
-      if [[ "$answer" != "y" ]]; then
-        echo "Aborting new project initialization."
-        exit 1
-      fi
-
-      cd ~/sources
-      mkdir $1
-
-      cd ~/sources/template-$2
-      while read file ; do
-        cp $file ~/sources/$1/$file
-      done < .templatable
-
-      cd ~/sources/$1
-      git init
-      git add .
-      git commit -m "initializing new project $1"
-    '')
+  home.packages = let
+    init-proj-sc = builtins.readFile ./init-project.sh;
+  in [
+    (pkgs.writeScriptBin "init-project" init-proj-sc)
   ];
 }
 
