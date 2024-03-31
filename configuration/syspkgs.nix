@@ -20,4 +20,6 @@
   services.printing.enable = true;
 
   programs.adb.enable = true;
+
+  virtualisation.docker.enable = true;
 }

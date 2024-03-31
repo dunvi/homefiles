@@ -17,7 +17,6 @@
     #direnv
     #devenv
 
-    #colima
     #docker
     #docker-compose
 
