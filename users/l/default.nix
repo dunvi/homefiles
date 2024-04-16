@@ -25,6 +25,7 @@
     discord
     zoom-us
     signal-desktop
+    slack
 
     (writeShellScriptBin "cdls" ''
       cd $1
