@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 let
-  # TODO: hide these in an import? autodetect moment repositories?
-  # TODO: make this opt out instead of opt in?
+  # TODO: can i hide the repo list and my user email in the
+  #       private repository? I would be a lot happeier with that.
 
   # Add moment repositories to this list
   momentRepos = [
@@ -10,15 +10,36 @@ let
     #"moment"
   ];
 
-  identityFn = repo:
+  overrideFn = repo:
     {
       condition = "gitdir:~/sources/${repo}/**";
       contents = {
-        user.name = "linnea";
-        user.email = "linnea@moment.dev";
+        user = {
+          name = "linnea";
+          email = "linnea@moment.dev";
+        };
+
+        url = {
+          "git@moment.github.com:".insteadOf = [
+            "git@github.com/"
+            "git@github.com"
+            "https://github.com/"
+            "https://github.com"
+            "https://moment.github.com/"
+            "https://moment.github.com"
+          ];
+          "git@moment.gitlab.com:".insteadOf = [
+            "git@gitlab.com/"
+            "git@gitlab.com"
+            "https://gitlab.com/"
+            "https://gitlab.com"
+            "https://moment.gitlab.com/"
+            "https://moment,gitlab.com"
+          ];
+        };
       };
     };
-  identities = builtins.map identityFn momentRepos;
+  overrideConfigs = builtins.map overrideFn momentRepos;
 
   flakeLoc = "~/sources/flakes-moment";
 
@@ -34,7 +55,7 @@ let
 in {
 
   # For all moment repositories, set identity to moment account
-  programs.git.includes = identities;
+  programs.git.includes = overrideConfigs;
 
   # Copy in the .envrcs to all such repositories
   home.file = envrcs;

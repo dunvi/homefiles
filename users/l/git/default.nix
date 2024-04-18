@@ -75,16 +75,6 @@
       init.defaultBranch = "main";
       pager.branch = false;
       push.default = "nothing";
-      url = {
-        "git@github.com:".insteadOf = [ 
-          "https://github.com/"
-          "https://github.com"
-        ];
-        "git@gitlab.com:".insteadOf = [ 
-          "https://gitlab.com/"
-          "https://gitlab.com"
-        ];
-      };
     };
   };
 

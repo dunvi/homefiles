@@ -3,10 +3,26 @@
 let
   expectedKeys = [
     "github_ed25519"
+    "github_moment_ed25519"
   ];
 
   keyargs = builtins.map (k: "$HOME/.ssh/" + k) expectedKeys;
 in {
+  home.file.".ssh/config" = {
+    text = ''
+      Host moment.github.com
+      HostName github.com
+      IdentityFile ~/.ssh/github_moment_ed25519
+      IdentitiesOnly yes
+
+      Host github.com
+      HostName github.com
+      IdentityFile ~/.ssh/github_ed25519
+      IdentitiesOnly yes
+    '';
+    executable = false;
+  };
+
   systemd.user.services.add-ssh-keys = {
     Unit = {
       Description = "Ensure SSK keys are added to the agent";
