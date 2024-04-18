@@ -7,7 +7,7 @@ let
   # Add moment repositories to this list
   momentRepos = [
     "atlas"
-    #"moment"
+    "moment"
   ];
 
   overrideFn = repo:
@@ -20,21 +20,18 @@ let
         };
 
         url = {
-          "git@moment.github.com:".insteadOf = [
-            "git@github.com/"
+          "git@moment.github.com".insteadOf = [
             "git@github.com"
+          ];
+          "git@moment.github.com:".insteadOf = [
             "https://github.com/"
             "https://github.com"
             "https://moment.github.com/"
             "https://moment.github.com"
           ];
-          "git@moment.gitlab.com:".insteadOf = [
-            "git@gitlab.com/"
-            "git@gitlab.com"
+          "git@gitlab.com:".insteadOf = [
             "https://gitlab.com/"
             "https://gitlab.com"
-            "https://moment.gitlab.com/"
-            "https://moment,gitlab.com"
           ];
         };
       };
