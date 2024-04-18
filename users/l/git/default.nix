@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./moment.nix
+  ];
+
   programs.git = {
     enable = true;
     package = pkgs.git;
@@ -16,7 +20,7 @@
       ".direnv"
       "devenv.local.nix"
       ".devenv"
-      #".envrc"
+      ".envrc"
       ".pre-commit-config.yaml"
 
       "out/"
