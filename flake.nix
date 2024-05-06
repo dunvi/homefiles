@@ -25,7 +25,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.l = import ./users/l;
+          home-manager.users.l = (import ./users/l/per/martha.nix) // (import ./users/l);
         }
       ];
 
@@ -34,23 +34,25 @@
         modules = nixosModules;
       };
 
+      momentConfig = home-manager.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+          };
+
+          modules = [
+            ./users/l/per/moment.nix
+            ./users/l
+          ];
+        };
+
     in {
       nixosConfigurations = {
         martha = marthaConfig;
         nixos = marthaConfig; # Useful to keep around if reinstalling
       };
 
-      # For standalone installation
-      #homeConfigurations = {
-      #  "l" = home-manager.lib.homeManagerConfiguration {
-      #    pkgs = import nixpkgs {
-      #      system = "x86_64-linux";
-      #    };
-      #
-      #    modules = [
-      #      ./home.nix
-      #    ];
-      #  };
-      #};
+      homeConfigurations = {
+        "linnea" = momentConfig;
+      };
     };
 }

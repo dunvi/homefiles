@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.username = lib.mkDefault "l";
-  home.homeDirectory = lib.mkDefault "/home/l";
+  home.username = lib.mkDefault "linnea";
+  home.homeDirectory = lib.mkDefault "/Users/linnea";
 
   # default git identity for this computer
   programs.git = {

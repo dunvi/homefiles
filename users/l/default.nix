@@ -20,24 +20,9 @@
     #docker
     #docker-compose
 
-    firefox
-
-    discord
-    zoom-us
-    signal-desktop
-    slack
-
     (writeShellScriptBin "cdls" ''
       cd $1
       ls
-    '')
-
-    (writeShellScriptBin "sysre" ''
-      systemctl reboot
-    '')
-
-    (writeShellScriptBin "nixre" ''
-      sudo nixos-rebuild switch --impure
     '')
   ];
 
