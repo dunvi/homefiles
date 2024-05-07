@@ -21,7 +21,7 @@
     '')
   ];
 
-  xdg.configFile."alacritty"."per.toml" = {
+  xdg.configFile."alacritty/per.toml" = {
     text = ''
       [font]
       size = 11

@@ -19,13 +19,17 @@
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       nixosSystem = "x86_64-linux";
+
+      baseConf = import ./users/l;
+      marthaMerges = import ./users/l/per/martha.nix;
+
       nixosModules = [
         ./configuration
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.l = (import ./users/l/per/martha.nix) // (import ./users/l);
+          home-manager.users.l = nixpkgs.lib.mkMerge [marthaMerges baseConf];
         }
       ];
 
