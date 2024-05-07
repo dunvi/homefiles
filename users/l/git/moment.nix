@@ -5,10 +5,15 @@ let
   #       private repository? I would be a lot happeier with that.
 
   # Add moment repositories to this list
-  momentRepos = [
+  momentFlakes = builtins.filter (repo: builtins.pathExists ~/sources/${repo}) [
     "atlas"
     "moment"
+
+    # excluded because this repository is not itself a nix flake
+    #"flakes-moment"
   ];
+
+  momentAll = momentFlakes ++ [ "flakes-moment" ];
 
   overrideFn = repo:
     {
@@ -36,7 +41,7 @@ let
         };
       };
     };
-  overrideConfigs = builtins.map overrideFn momentRepos;
+  overrideConfigs = builtins.map overrideFn momentAll;
 
   flakeLoc = "~/sources/flakes-moment";
 
@@ -48,7 +53,7 @@ let
         executable = false;
       };
     };
-  envrcs = builtins.listToAttrs (builtins.map envrcFn momentRepos);
+  envrcs = builtins.listToAttrs (builtins.map envrcFn momentFlakes);
 in {
 
   # For all moment repositories, set identity to moment account

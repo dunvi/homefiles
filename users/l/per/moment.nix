@@ -6,7 +6,7 @@
 
   home.packages = with pkgs; [
     (writeShellScriptBin "nixre" ''
-      home-manager switch --flake ~/sources/homefiles
+      home-manager switch --flake ~/sources/homefiles --impure
     '')
   ];
 }
