@@ -20,4 +20,11 @@
       sudo nixos-rebuild switch --impure
     '')
   ];
+
+  xdg.configFile."alacritty"."per.toml" = {
+    text = ''
+      [font]
+      size = 11
+    '';
+  };
 }
