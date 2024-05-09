@@ -8,6 +8,7 @@
 
     plugins = [
       pkgs.vimPlugins.ale
+      pkgs.vimPlugins.vim-go
     ];
 
     # most of the vim config cannot be moved into this block in its current state

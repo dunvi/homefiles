@@ -35,9 +35,6 @@ set t_vb=
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=4
-set softtabstop=4
-set expandtab
 set backspace=2
 set showmatch
 
