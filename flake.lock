@@ -135,6 +135,22 @@
         "type": "github"
       }
     },
+    "nix23_11": {
+      "locked": {
+        "lastModified": 1716218643,
+        "narHash": "sha256-i/E7gzQybvcGAYDRGDl39WL6yVk30Je/NXypBz6/nmM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a8695cbd09a7ecf3376bd62c798b9864d20f86ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1678875422,
@@ -231,6 +247,7 @@
       "inputs": {
         "devenv": "devenv",
         "home-manager": "home-manager",
+        "nix23_11": "nix23_11",
         "nixpkgs": "nixpkgs_2"
       }
     }
