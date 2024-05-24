@@ -44,7 +44,7 @@
       grep = "grep --color=auto";
 
       # move this to a ruby specific module
-      rspec = "bundle exec rspec --format documentation";
+      #rspec = "bundle exec rspec --format documentation";
     };
 
     # this file still holds colors, prompt magic, and some bindkeys.
