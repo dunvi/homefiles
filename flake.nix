@@ -2,17 +2,17 @@
   description = "flake setup baseline";
 
   inputs = {
-    nixpkgs = {
+    nix-unstable = {
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
 
-    nix23_11 = {
+    nix-23_11 = {
       url = "github:nixos/nixpkgs/nixos-23.11";
     };
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nix-unstable";
     };
 
     devenv = {
@@ -20,10 +20,13 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, nix23_11, home-manager, ... }:
+  outputs = inputs@{ self, nix-unstable, nix-23_11, home-manager, ... }:
     let
       baseConf = import ./users/l;
       marthaMerges = import ./users/l/per/martha.nix;
+
+      marthaSystem = "x86_64-linux";
+      momentSystem = "aarch64-darwin";
 
       nixosModules = [
         ./configuration
@@ -31,23 +34,26 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.l = nixpkgs.lib.mkMerge [marthaMerges baseConf];
+          home-manager.users.l = nix-unstable.lib.mkMerge [
+            marthaMerges
+            baseConf
+          ];
         }
       ];
 
-      marthaConfig = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      marthaConfig = nix-unstable.lib.nixosSystem {
+        system = marthaSystem;
         modules = nixosModules;
       };
 
       momentConfig = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
+          pkgs = import nix-unstable {
+            system = momentSystem;
           };
 
           extraSpecialArgs = {
-            pkgs23_11 = import nix23_11 {
-              system = "aarch64-darwin";
+            pkgs23_11 = import nix-23_11 {
+              system = momentSystem;
             };
           };
 

@@ -43,13 +43,13 @@ let
     };
   overrideConfigs = builtins.map overrideFn momentAll;
 
-  flakeLoc = "~/sources/flakes-moment";
+  flakeLoc = "${config.home.homeDirectory}/sources/flakes-moment";
 
   envrcFn = repo:
     {
       name = "sources/${repo}/.envrc";
       value = {
-        text = "use flake ${flakeLoc}/${repo} --impure";
+        text = "use flake path:${flakeLoc}/${repo} --impure";
         executable = false;
       };
     };
