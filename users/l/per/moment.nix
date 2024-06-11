@@ -14,6 +14,10 @@
     '')
   ];
 
+  home.sessionVariables = {
+    DOCKER_HOST = "unix:///Users/linnea/.colima/default/docker.sock";
+  };
+
   xdg.configFile."alacritty/per.toml" = {
     text = ''
       [[keyboard.bindings]]

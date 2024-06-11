@@ -4,16 +4,13 @@ let
   # TODO: can i hide the repo list and my user email in the
   #       private repository? I would be a lot happeier with that.
 
-  # Add moment repositories to this list
-  momentFlakes = builtins.filter (repo: builtins.pathExists ~/sources/${repo}) [
-    "atlas"
-    "moment"
+  momentRepos = {
+    "none" = [ "flakes-moment" ];
 
-    # excluded because this repository is not itself a nix flake
-    #"flakes-moment"
-  ];
-
-  momentAll = momentFlakes ++ [ "flakes-moment" ];
+    # Add moment repositories to this list
+    "atlas" = [ "atlas" "atlas-mom" ];
+    "moment" = [ "moment" ];
+  };
 
   overrideFn = repo:
     {
@@ -41,19 +38,25 @@ let
         };
       };
     };
-  overrideConfigs = builtins.map overrideFn momentAll;
+  allGitRepos = lib.lists.flatten (lib.attrsets.mapAttrsToList (_: repos: repos) momentRepos);
+  overrideConfigs = builtins.map overrideFn allGitRepos;
 
   flakeLoc = "${config.home.homeDirectory}/sources/flakes-moment";
-
-  envrcFn = repo:
+  envrcFn = flake: repo:
     {
       name = "sources/${repo}/.envrc";
       value = {
-        text = "use flake path:${flakeLoc}/${repo} --impure";
+        text = "use flake path:${flakeLoc}/${flake} --impure";
         executable = false;
       };
     };
-  envrcs = builtins.listToAttrs (builtins.map envrcFn momentFlakes);
+
+  unfolder = flake: repos:
+    builtins.map (repo: envrcFn flake repo) repos;
+
+  flakesOnly = builtins.removeAttrs momentRepos [ "none" ];
+  flakified = lib.lists.flatten (lib.attrsets.mapAttrsToList unfolder flakesOnly);
+  envrcs = builtins.listToAttrs flakified;
 in {
 
   # For all moment repositories, set identity to moment account

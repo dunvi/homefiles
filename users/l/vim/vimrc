@@ -31,13 +31,6 @@ set noerrorbells
 set visualbell
 set t_vb=
 
-""" tabbing behavior
-set autoindent
-set smartindent
-set smarttab
-set backspace=2
-set showmatch
-
 """ display stuff
 set list
 set listchars=trail:~,tab:>-
@@ -60,15 +53,47 @@ set wildmenu
 set wildmode=longest,list,full
 set path=$PWD/**
 
+""" default tabbing behavior
+set autoindent
+set smartindent
+set smarttab
+set backspace=2
+set showmatch
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
 if has("autocmd")
     filetype plugin indent on
 endif
 
-""" yaml is not correctly implemented by default
-autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+""" these are not correctly implemented by default
+autocmd FileType yaml,yml      setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType typescript     setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType proto        setlocal ts=4 sts=4 sw=4 expandtab
 
 let g:ale_go_golangci_lint_package = 1
+let g:go_fmt_fail_silently = 1
 let g:go_imports_autosave = 0
+
+function ALELSPMappings()
+	let lsp_found=0
+	for linter in ale#linter#Get(&filetype)
+		if !empty(linter.lsp) && ale#lsp_linter#CheckWithLSP(bufnr(''), linter)
+			let lsp_found=1
+		endif
+	endfor
+	if (lsp_found)
+		nnoremap <buffer> K :ALEDocumentation<cr>
+		nnoremap <buffer> gr :ALEFindReferences<cr>
+		nnoremap <buffer> gd :ALEGoToDefinition<cr>
+		nnoremap <buffer> gy :ALEGoToTypeDefinition<cr>
+		nnoremap <buffer> gh :ALEHover<cr>
+
+		setlocal omnifunc=ale#completion#OmniFunc
+	endif
+endfunction
+autocmd BufRead,FileType * call ALELSPMappings()
 
 """let g:colors = getcompletion('', 'color')
 """func! NextColors()
