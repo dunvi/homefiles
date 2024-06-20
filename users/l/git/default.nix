@@ -15,6 +15,7 @@
     };
 
     ignores = [
+      "nocommit/"
       "*.swp"
 
       ".direnv"

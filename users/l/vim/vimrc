@@ -69,7 +69,7 @@ endif
 
 """ these are not correctly implemented by default
 autocmd FileType yaml,yml      setlocal ts=2 sts=2 sw=2 expandtab
-autocmd FileType typescript     setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType typescript,typescriptreact     setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType proto        setlocal ts=4 sts=4 sw=4 expandtab
 
 let g:ale_go_golangci_lint_package = 1
