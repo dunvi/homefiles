@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
-{
+let
+  identities = import ./identity.nix;
+in {
   programs.home-manager.enable = true;
 
   # You should not change this value, even if you update Home Manager. If you do
@@ -27,12 +29,17 @@
   ];
 
   imports = [
-    ./identity.nix
     ./ssh
     ./git
     ./zsh
     ./vim
+
+    ~/sources/flakes-moment/moment.nix
   ];
+
+  # map users in the identity file to uses.
+  l.user = identities.gitUsers.default;
+  moment.user = identities.gitUsers.moment;
 
   # putting here as long as we are not meaningfully using the built-in alacritty support
   programs.alacritty.enable = true;

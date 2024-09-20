@@ -1,12 +1,13 @@
-{ config, pkgs, lib, ... }:
-
 {
-  home.username = lib.mkDefault "linnea";
-  home.homeDirectory = lib.mkDefault "/Users/linnea";
+  gitUsers = {
+    default = {
+      name = "dunvi";
+      email = "dunvi.dunvi@gmail.com";
+    };
 
-  # default git identity for this computer
-  programs.git = {
-    userName = lib.mkDefault "dunvi";
-    userEmail = lib.mkDefault "dunvi.dunvi@gmail.com";
+    moment = {
+      name = "linnea";
+      email = "linnea@moment.dev";
+    };
   };
 }
