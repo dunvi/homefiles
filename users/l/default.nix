@@ -41,6 +41,12 @@ in {
   l.user = identities.gitUsers.default;
   moment.user = identities.gitUsers.moment;
 
+  # symlink the workspaces location to sources so it doesn't make me crazy
+  home.file."sources/workspace" = {
+    source = config.lib.file.mkOutOfStoreSymlink /. + "${config.home.homeDirectory}/.moment/workspace";
+    recursive = false;
+  };
+
   # putting here as long as we are not meaningfully using the built-in alacritty support
   programs.alacritty.enable = true;
   xdg.configFile."alacritty" = {
