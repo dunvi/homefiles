@@ -1,3 +1,5 @@
+test
+
 echo "Reminder: this script must be run with sudo!"
 
 grep -Fq "nix-daemon" /etc/zshrc
