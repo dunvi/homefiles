@@ -9,8 +9,12 @@
     ./cpu.nix
     ./gpu.nix
     ./networking.nix
-    ./sound.nix
+    #./sound.nix
   ];
+
+  programs.nix-ld = {
+    enable = true;
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

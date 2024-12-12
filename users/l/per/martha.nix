@@ -4,12 +4,16 @@
   home.username = lib.mkDefault "l";
   home.homeDirectory = lib.mkDefault "/home/l";
 
+  imports = [
+    /home/l/sources/flakes-moment/moment.nix
+  ];
+
   home.packages = with pkgs; [
     firefox
 
-    discord
+    #discord
     zoom-us
-    signal-desktop
+    #signal-desktop
     slack
 
     (writeShellScriptBin "sysre" ''

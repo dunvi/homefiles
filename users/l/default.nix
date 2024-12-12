@@ -33,8 +33,6 @@ in {
     ./git
     ./zsh
     ./vim
-
-    ~/sources/flakes-moment/moment.nix
   ];
 
   # map users in the identity file to uses.

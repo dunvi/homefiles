@@ -4,6 +4,10 @@
   home.username = lib.mkDefault "linnea";
   home.homeDirectory = lib.mkDefault "/Users/linnea";
 
+  imports = [
+    /Users/linnea/sources/flakes-moment/moment.nix
+  ];
+
   home.packages = [
     pkgs23_11.colima
     pkgs.docker
