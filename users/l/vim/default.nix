@@ -8,6 +8,7 @@
 
     plugins = [
       pkgs.vimPlugins.ale
+      pkgs.vimPlugins.rust-vim
       pkgs.vimPlugins.vim-go
       pkgs.vimPlugins.yats-vim
     ];

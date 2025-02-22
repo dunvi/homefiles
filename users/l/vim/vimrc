@@ -81,6 +81,9 @@ let g:ale_go_golangci_lint_package = 1
 let g:go_fmt_fail_silently = 1
 let g:go_imports_autosave = 0
 
+let g:rustfmt_autosave = 1
+let g:rustfmt_options ='--edition 2024'
+
 function ALELSPMappings()
 	let lsp_found=0
 	for linter in ale#linter#Get(&filetype)
