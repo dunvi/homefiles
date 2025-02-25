@@ -6,13 +6,17 @@
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
 
+    nixos-hardware = {
+      url = "github:nixos/nixos-hardware/master";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nix-unstable";
     };
   };
 
-  outputs = inputs@{ self, nix-unstable, home-manager, ... }:
+  outputs = inputs@{ self, nix-unstable, nixos-hardware, home-manager, ... }:
     let
       baseConf = import ./users/l;
       marthaMerges = import ./users/l/per/martha.nix;
@@ -21,6 +25,7 @@
       momentSystem = "aarch64-darwin";
 
       nixosModules = [
+        nixos-hardware.nixosModules.dell-xps-15-9530
         ./configuration
         home-manager.nixosModules.home-manager
         {
@@ -39,23 +44,18 @@
       };
 
       momentConfig = home-manager.lib.homeManagerConfiguration {
-          pkgs = import nix-unstable {
-            system = momentSystem;
-          };
-
-          extraSpecialArgs = {
-            #pkgs23_11 = import nix-23_11 {
-            #  system = momentSystem;
-            #};
-          };
-
-          modules = [
-            ./users/l/per/moment.nix
-            ./users/l
-          ];
+        pkgs = import nix-unstable {
+          system = momentSystem;
         };
+        modules = [
+          ./users/l/per/moment.nix
+          ./users/l
+        ];
+      };
 
     in {
+      systemPackages = nix-unstable;
+
       nixosConfigurations = {
         martha = marthaConfig;
         nixos = marthaConfig; # Useful to keep around if reinstalling
