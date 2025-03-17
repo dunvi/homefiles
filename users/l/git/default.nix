@@ -87,10 +87,14 @@ in {
             diverging = false;
             worktreeAddOrphan = false;
           };
+          branch.sort = "-committerdate";
           core.hooksPath = "/dev/null";
+          diff.algorithm = "histogram";
+          diff.renames = true;
           init.defaultBranch = "main";
           pager.branch = false;
           push.default = "nothing";
+          tag.sort = "version:refname";
         };
       };
 
