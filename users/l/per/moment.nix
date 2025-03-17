@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs23_11, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.username = lib.mkDefault "linnea";
@@ -9,7 +9,7 @@
   ];
 
   home.packages = [
-    pkgs23_11.colima
+    pkgs.colima
     pkgs.docker
     pkgs.kubectl
 

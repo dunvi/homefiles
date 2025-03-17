@@ -6,21 +6,13 @@
       url = "github:nixos/nixpkgs/nixpkgs-unstable";
     };
 
-    nix-23_11 = {
-      url = "github:nixos/nixpkgs/nixos-23.11";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nix-unstable";
     };
-
-    devenv = {
-      url = "github:cachix/devenv/latest";
-    };
   };
 
-  outputs = inputs@{ self, nix-unstable, nix-23_11, home-manager, ... }:
+  outputs = inputs@{ self, nix-unstable, home-manager, ... }:
     let
       baseConf = import ./users/l;
       marthaMerges = import ./users/l/per/martha.nix;
@@ -52,9 +44,9 @@
           };
 
           extraSpecialArgs = {
-            pkgs23_11 = import nix-23_11 {
-              system = momentSystem;
-            };
+            #pkgs23_11 = import nix-23_11 {
+            #  system = momentSystem;
+            #};
           };
 
           modules = [

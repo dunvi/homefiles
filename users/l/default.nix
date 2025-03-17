@@ -15,13 +15,6 @@ in {
 
     htop
 
-    #cachix
-    #direnv
-    #devenv
-
-    #docker
-    #docker-compose
-
     (writeShellScriptBin "cdls" ''
       cd $1
       ls

@@ -11,9 +11,7 @@
   home.packages = with pkgs; [
     firefox
 
-    #discord
     zoom-us
-    #signal-desktop
     slack
 
     (writeShellScriptBin "sysre" ''
