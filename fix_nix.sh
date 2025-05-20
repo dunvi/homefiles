@@ -11,3 +11,5 @@ fi
 echo "if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then" >> /etc/zshrc
 echo "  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'" >> /etc/zshrc
 echo "fi" >> /etc/zshrc
+
+echo "The nix-daemon has been reinitialized, don't forget to restart your terminal."
