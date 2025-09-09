@@ -23,7 +23,7 @@
   xdg.configFile."alacritty/per.toml" = {
     text = ''
       [font]
-      size = 11
+      size = 15
     '';
   };
 }
