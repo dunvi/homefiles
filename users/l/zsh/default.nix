@@ -49,6 +49,6 @@
 
     # this file still holds colors, prompt magic, and some bindkeys.
     # i think these can get moved out as well, but i need more smarts.
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
   };
 }

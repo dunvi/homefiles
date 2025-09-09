@@ -1,21 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  services.libinput.enable = true;
-  services.displayManager.sddm.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    enable = true;
+  services = {
+    libinput.enable = true;
+    displayManager.sddm.enable = true;
 
     # Enable the KDE Plasma Desktop Environment.
-    desktopManager.plasma5.enable = true;
-
-    xkb = {
-      layout = "us";
-      variant = "";
-      options = "ctrl:nocaps";
-    };
+    desktopManager.plasma6.enable = true;
 
     libinput = {
       touchpad = {
@@ -23,6 +14,16 @@
         disableWhileTyping = true;
         naturalScrolling = false;
         horizontalScrolling = true;
+      };
+    };
+
+    # Configure keymap in X11
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+        options = "ctrl:nocaps";
       };
     };
   };
