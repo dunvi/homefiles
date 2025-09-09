@@ -1,3 +1,7 @@
+# This file is retained for educational purposes
+# (aka, copy paste in the future). If it is consumed
+# in such a way, go ahead and delete this file.
+
 { config, pkgs, lib, ... }:
 
 {

@@ -22,7 +22,7 @@
       marthaMerges = import ./users/l/per/martha.nix;
 
       marthaSystem = "x86_64-linux";
-      momentSystem = "aarch64-darwin";
+      #momentSystem = "aarch64-darwin";
 
       nixosModules = [
         nixos-hardware.nixosModules.dell-xps-15-9530
@@ -43,15 +43,17 @@
         modules = nixosModules;
       };
 
-      momentConfig = home-manager.lib.homeManagerConfiguration {
-        pkgs = import nix-unstable {
-          system = momentSystem;
-        };
-        modules = [
-          ./users/l/per/moment.nix
-          ./users/l
-        ];
-      };
+      # retained for memory of how to link up MacOS config
+      # delete if consumed for a new configuration
+      #momentConfig = home-manager.lib.homeManagerConfiguration {
+      #  pkgs = import nix-unstable {
+      #    system = momentSystem;
+      #  };
+      #  modules = [
+      #    ./users/l/per/moment.nix
+      #    ./users/l
+      #  ];
+      #};
 
     in {
       systemPackages = nix-unstable;
@@ -62,7 +64,7 @@
       };
 
       homeConfigurations = {
-        "linnea" = momentConfig;
+        #"linnea" = momentConfig;
       };
     };
 }

@@ -4,15 +4,12 @@
   home.username = lib.mkDefault "l";
   home.homeDirectory = lib.mkDefault "/home/l";
 
-  imports = [
-    /home/l/sources/flakes-moment/moment.nix
-  ];
+  imports = [];
 
   home.packages = with pkgs; [
     firefox
 
     zoom-us
-    slack
 
     (writeShellScriptBin "sysre" ''
       systemctl reboot
