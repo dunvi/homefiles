@@ -9,6 +9,7 @@
     extraGroups = [
       "adbusers"
       "docker"
+      "kvm"
       "networkmanager"
       "wheel"
     ];

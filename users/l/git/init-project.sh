@@ -8,10 +8,10 @@ if [[ -z "$1" ]] ; then
 fi
 
 case "$2" in
-    kotlin|go)
+    android|go|kotlin)
         :
         ;;
-    android|java|python|ruby)
+    java|python|ruby)
         echo "This template is not fully configured. Aborting."
         exit 1
         ;;
@@ -22,6 +22,7 @@ case "$2" in
 esac
 
 read -p "Templating $2 to directory $1. Continue? (y/n) " -n1 answer
+echo ""
 if [[ "$answer" != "y" ]] ; then
     echo "Aborting new project initialization."
     exit 1
@@ -32,7 +33,7 @@ mkdir $1
 
 cd ~/sources/template-$2
 while read file ; do
-    cp $file ~/sources/$1/$file
+    cp -R $file ~/sources/$1/$file
 done < ./templatable/files.txt
 
 if [[ -f ./templatable/post-init.sh ]] ; then
