@@ -3,9 +3,9 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    #git
-    #vim
-    #wget
+    dig
+    mtr
+    curl
   ];
 
   programs.zsh.enable = true;

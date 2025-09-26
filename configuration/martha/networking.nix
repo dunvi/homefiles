@@ -4,6 +4,8 @@
   networking = {
     hostName = "martha";
 
+    enableIPv6 = false;
+
     useDHCP = lib.mkDefault true;
     # interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 

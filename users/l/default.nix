@@ -13,8 +13,6 @@ in {
   home.packages = with pkgs; [
     llvm
 
-    curl
-
     htop
 
     (writeShellScriptBin "cdls" ''
