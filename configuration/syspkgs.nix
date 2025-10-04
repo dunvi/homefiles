@@ -3,6 +3,8 @@
 {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    git
+    vim
     dig
     mtr
     curl

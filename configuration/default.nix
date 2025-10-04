@@ -6,22 +6,13 @@
       "nix-command"
       "flakes"
     ];
-
-    trusted-users = [ "root" "l" ];
   };
 
   imports = [
-    ./martha
     ./locale.nix
-    ./xserver.nix
     ./syspkgs.nix
     ./users.nix
   ];
-
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

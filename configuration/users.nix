@@ -1,9 +1,7 @@
 { config, pkgs, ... }:
 
-{
-  users.groups.docker = {};
-
-  users.users.l = {
+let
+  userConf = {
     isNormalUser = true;
     description = "l";
     extraGroups = [
@@ -14,6 +12,13 @@
       "wheel"
     ];
     shell = pkgs.zsh;
+  };
+in {
+  users.groups.docker = {};
+
+  users.users = {
+    l = userConf;
+    nixos = userConf;
   };
 }
 
