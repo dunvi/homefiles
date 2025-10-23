@@ -10,13 +10,24 @@
       url = "github:nixos/nixos-hardware/master";
     };
 
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
+    };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nix-unstable";
+      inputs.lix.follows = "lix";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nix-unstable";
     };
   };
 
-  outputs = inputs@{ self, nix-unstable, nixos-hardware, home-manager, ... }:
+  outputs = inputs@{ self, lix, lix-module, nix-unstable, nixos-hardware, home-manager, ... }:
     let
       baseUserConf = import ./users/l;
       marthaUserMerges = [(import ./users/l/per/martha.nix)];
@@ -31,6 +42,7 @@
           baseUserConf
         ] ++ userMerges);
       in [
+        lix-module.nixosModules.default
         ./configuration
         home-manager.nixosModules.home-manager
         {
