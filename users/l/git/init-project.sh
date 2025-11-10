@@ -1,12 +1,32 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -eo pipefail
 
 if [[ -z "$1" ]] ; then
     echo "No destination given. Aborting."
     exit 1
 fi
+case "$1" in 
+    -h|--help|help)
+        echo "Usage: init-project [name] [language]"
+        echo "    where language may be one of the following:"
+        echo "     * android"
+        echo "     * kotlin"
+        echo "     * java [TODO]"
+        echo "     * go"
+        echo "     * python [TODO]"
+        echo "     * ruby [TODO]"
+        exit 0
+        ;;
+    *)
+        :
+        ;;
+esac
 
+if [[ -z "$2" ]] ; then
+    echo "No language given. Aborting."
+    exit 1
+fi
 case "$2" in
     android|go|kotlin)
         :
@@ -20,6 +40,7 @@ case "$2" in
         exit 1
         ;;
 esac
+set -u
 
 read -p "Templating $2 to directory $1. Continue? (y/n) " -n1 answer
 echo ""
