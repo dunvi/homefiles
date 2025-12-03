@@ -33,7 +33,7 @@ in {
   l.user = identities.gitUsers.default;
 
   # putting here as long as we are not meaningfully using the built-in alacritty support
-  programs.alacritty.enable = true;
+  programs.alacritty.enable = false;
   xdg.configFile."alacritty" = {
     source = ./alacritty;
     recursive = true;

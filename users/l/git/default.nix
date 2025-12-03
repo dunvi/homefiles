@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 
+
+
 let
   cfg = config.l;
 in {
@@ -21,14 +23,6 @@ in {
       enable = true;
       package = pkgs.git;
 
-      userName = cfg.user.name;
-      userEmail = cfg.user.email;
-
-      aliases = {
-        head = "log -n 1";
-        graph = "log --graph --oneline --decorate --all";
-      };
-
       ignores = [
         "nocommit/"
         "*.swp"
@@ -47,62 +41,73 @@ in {
         "*/*.iml"
 
         "**/scalatra-local.conf"
-        ];
+      ];
 
-        extraConfig = {
-          advice = {
-            ambiguousFetchRefspec = false;
-            fetchShowForcedUpdates = false;
-            pushUpdateRejected = false;
-            pushNonFFCurrent = false;
-            pushNonFFMatching = false;
-            pushAlreadyExists = false;
-            pushFetchFirst = false;
-            pushNeedsForce = false;
-            pushUnqualifiedRefname = false;
-            pushRefNeedsUpdate = false;
-            skippedCherryPicks = false;
-            statusAheadBehind = false;
-            statusHints = false;
-            statusUoption = false;
-            commitBeforeMerge = false;
-            resetNoRefresh = false;
-            resolveConflict = false; 
-            sequencerInUse = false;
-            implicitIdentity = false;
-            detachedHead = false;
-            suggestDetachingHead = false;
-            checkoutAmbiguousRemoteBranchName = false;
-            amWorkDir = false;
-            rmHints = false;
-            addEmbeddedRepo = false;
-            ignoredHook = false;
-            waitingForEditor = false;
-            nestedTag = false;
-            submoduleAlternateErrorStrategyDie = false;
-            submodulesNotUpdated = false;
-            addIgnoredFile = false;
-            addEmptyPathspec = false;
-            updateSparsePath = false;
-            diverging = false;
-            worktreeAddOrphan = false;
-          };
-          branch.sort = "-committerdate";
-          core.hooksPath = "/dev/null";
-          diff.algorithm = "histogram";
-          diff.renames = true;
-          init.defaultBranch = "main";
-          pager.branch = false;
-          push.default = "nothing";
-          tag.sort = "version:refname";
+      settings = {
+        alias = {
+          head = "log -n 1";
+          graph = "log --graph --oneline --decorate --all";
+        };
+
+        user = {
+          name = cfg.user.name;
+          email = cfg.user.email;
+        };
+
+        branch.sort = "-committerdate";
+        core.hooksPath = "/dev/null";
+        diff.algorithm = "histogram";
+        diff.renames = true;
+        init.defaultBranch = "main";
+        pager.branch = false;
+        push.default = "nothing";
+        tag.sort = "version:refname";
+
+        advice = {
+          ambiguousFetchRefspec = false;
+          fetchShowForcedUpdates = false;
+          pushUpdateRejected = false;
+          pushNonFFCurrent = false;
+          pushNonFFMatching = false;
+          pushAlreadyExists = false;
+          pushFetchFirst = false;
+          pushNeedsForce = false;
+          pushUnqualifiedRefname = false;
+          pushRefNeedsUpdate = false;
+          skippedCherryPicks = false;
+          statusAheadBehind = false;
+          statusHints = false;
+          statusUoption = false;
+          commitBeforeMerge = false;
+          resetNoRefresh = false;
+          resolveConflict = false; 
+          sequencerInUse = false;
+          implicitIdentity = false;
+          detachedHead = false;
+          suggestDetachingHead = false;
+          checkoutAmbiguousRemoteBranchName = false;
+          amWorkDir = false;
+          rmHints = false;
+          addEmbeddedRepo = false;
+          ignoredHook = false;
+          waitingForEditor = false;
+          nestedTag = false;
+          submoduleAlternateErrorStrategyDie = false;
+          submodulesNotUpdated = false;
+          addIgnoredFile = false;
+          addEmptyPathspec = false;
+          updateSparsePath = false;
+          diverging = false;
+          worktreeAddOrphan = false;
         };
       };
-
-      home.packages = let
-        init-proj-sc = builtins.readFile ./init-project.sh;
-      in [
-        (pkgs.writeScriptBin "init-project" init-proj-sc)
-      ];
     };
-  }
+
+    home.packages = let
+      init-proj-sc = builtins.readFile ./init-project.sh;
+    in [
+      (pkgs.writeScriptBin "init-project" init-proj-sc)
+    ];
+  };
+}
 
