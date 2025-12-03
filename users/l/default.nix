@@ -13,6 +13,7 @@ in {
   home.packages = with pkgs; [
     llvm
 
+    ghostty
     htop
 
     (writeShellScriptBin "cdls" ''
@@ -35,6 +36,11 @@ in {
   programs.alacritty.enable = true;
   xdg.configFile."alacritty" = {
     source = ./alacritty;
+    recursive = true;
+  };
+
+  xdg.configFile."ghostty" = {
+    source = ./ghostty;
     recursive = true;
   };
 

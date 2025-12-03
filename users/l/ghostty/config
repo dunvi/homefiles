@@ -1,0 +1,39 @@
+# This is the configuration file for Ghostty.
+#
+# Run `ghostty +show-config --default --docs` to view a list of
+# all available config options and their default values.
+#
+# Additionally, each config option is also explained in detail
+# on Ghostty's website, at https://ghostty.org/docs/config.
+#
+# Ghostty can reload the configuration while running by using the menu
+# options or the bound key (default: Command + Shift + comma on macOS and
+# Control + Shift + comma on other platforms). Not all config options can be
+# reloaded while running; some only apply to new windows and others may require
+# a full restart to take effect.
+
+# # Any line beginning with a # is a comment. It's not possible to put
+# # a comment after a config option, since it would be interpreted as a
+# # part of the value. For example, this will have a value of "#123abc":
+# background = #123abc
+#
+# # Empty values are used to reset config keys to default.
+# key =
+
+#theme = "Monokai Pro Machine"
+theme = "Material Ocean"
+
+font-family = "DejaVu Sans Mono"
+font-style-bold=false
+font-style-italic=false
+font-style-bold-italic=false
+font-size = "15"
+
+cursor-style = block
+cursor-style-blink=false
+shell-integration-features = no-cursor
+
+bell-features=no-system,no-audio,no-attention,no-title,no-border
+
+window-height=40
+window-width=120
