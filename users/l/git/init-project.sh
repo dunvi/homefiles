@@ -14,6 +14,7 @@ case "$1" in
         echo "     * kotlin"
         echo "     * java [TODO]"
         echo "     * go"
+        echo "     * rust"
         echo "     * python [TODO]"
         echo "     * ruby [TODO]"
         exit 0
@@ -28,7 +29,7 @@ if [[ -z "$2" ]] ; then
     exit 1
 fi
 case "$2" in
-    android|go|kotlin)
+    android|kotlin|go|rust)
         :
         ;;
     java|python|ruby)
@@ -52,7 +53,7 @@ fi
 cd ~/sources
 mkdir $1
 
-cd ~/sources/template-$2
+cd ~/sources/homefiles/templates/template-$2
 while read file ; do
     cp -R $file ~/sources/$1/$file
 done < ./templatable/files.txt

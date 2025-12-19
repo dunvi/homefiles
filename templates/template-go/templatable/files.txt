@@ -1,0 +1,3 @@
+.envrc
+flake.nix
+hello-world.go

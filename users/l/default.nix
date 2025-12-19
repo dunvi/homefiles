@@ -15,6 +15,7 @@ in {
 
     ghostty
     htop
+    file
 
     (writeShellScriptBin "cdls" ''
       cd $1

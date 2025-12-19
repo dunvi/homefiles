@@ -9,7 +9,8 @@
   home.packages = with pkgs; [
     firefox
 
-    zoom-us
+    signal-desktop
+    discord
 
     (writeShellScriptBin "sysre" ''
       systemctl reboot
