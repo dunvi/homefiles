@@ -19,6 +19,10 @@
     (writeShellScriptBin "nixre" ''
       sudo nixos-rebuild switch --impure
     '')
+
+    (writeShellScriptBin "nixcl" ''
+      sudo nix-collect-garbage --delete-older-than 5d
+    '')
   ];
 
   xdg.configFile."alacritty/per.toml" = {
