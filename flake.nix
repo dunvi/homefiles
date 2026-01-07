@@ -81,8 +81,6 @@
       #};
 
     in {
-      systemPackages = nix-unstable;
-
       nixosConfigurations = {
         martha = marthaConfig;
         olivia = oliviaConfig;
